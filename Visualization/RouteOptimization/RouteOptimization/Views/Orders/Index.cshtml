@@ -4,8 +4,50 @@
 }
 
 @section HeadScripts{
-    <!-- Scripts to be placed in the head tag -->
-} 
+    <script type="text/html">
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Date)*@
+                @Html.FormatValue("dd-MMM-yyyy", ((DateTime)item.Date).ToString("dd-MMM-yyyy"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+    </script>
+}
+
+<!-- red = new, blue = planned, green = picked up and dispatched -->
 
 <h2>Index</h2>
 
+<table class="table table-sm" id="datatable1">
+    <thead class="bg-dark text-white no-bold">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Date)*@
+                @Html.FormatValue("dd-MMM-yyyy", ((DateTime)item.Date).ToString("dd-MMM-yyyy"))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+@* 
+    
+    * order id
+    * order date
+    * order time
+    * restaurant name
+
+*@

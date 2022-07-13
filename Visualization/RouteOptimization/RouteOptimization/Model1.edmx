@@ -1,0 +1,394 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Optimization_RWModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="channels">
+          <Key>
+            <PropertyRef Name="channel_id" />
+          </Key>
+          <Property Name="channel_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="channel_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="channel_type" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="deliveries">
+          <Key>
+            <PropertyRef Name="delivery_id" />
+          </Key>
+          <Property Name="delivery_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="delivery_order_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="driver_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="delivery_distance_meters" Type="nvarchar" MaxLength="50" />
+          <Property Name="delivery_status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="drivers">
+          <Key>
+            <PropertyRef Name="driver_id" />
+          </Key>
+          <Property Name="driver_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="driver_modal" Type="nvarchar" MaxLength="50" />
+          <Property Name="driver_type" Type="nvarchar" MaxLength="50" />
+          <Property Name="current_latitude" Type="float" />
+          <Property Name="current_longitude" Type="float" />
+          <Property Name="driver_rating" Type="smallint" />
+          <Property Name="current_orders" Type="smallint" />
+        </EntityType>
+        <EntityType Name="hubs">
+          <Key>
+            <PropertyRef Name="hub_id" />
+          </Key>
+          <Property Name="hub_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="hub_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="hub_city" Type="nvarchar" MaxLength="50" />
+          <Property Name="hub_state" Type="nvarchar" MaxLength="50" />
+          <Property Name="hub_latitude" Type="float" />
+          <Property Name="hub_longitude" Type="float" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="store_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="channel_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="payment_order_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="delivery_order_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="order_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_amount" Type="float" />
+          <Property Name="order_delivery_fee" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_delivery_cost" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_created_hour" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_created_minute" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_created_day" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_created_month" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_created_year" Type="int" />
+          <Property Name="order_moment_created" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_moment_accepted" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_moment_ready" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_moment_collected" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_moment_in_expedition" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_moment_delivering" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_moment_delivered" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_moment_finished" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_collected_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_paused_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_production_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_walking_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_expediton_speed_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_transit_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_cycle_time" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="payment_order_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="payment_amount" Type="float" />
+          <Property Name="payment_fee" Type="nvarchar" MaxLength="50" />
+          <Property Name="payment_method" Type="nvarchar" MaxLength="50" />
+          <Property Name="payment_status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="stores">
+          <Key>
+            <PropertyRef Name="store_id" />
+          </Key>
+          <Property Name="store_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="hub_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="store_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="store_segment" Type="nvarchar" MaxLength="50" />
+          <Property Name="store_plan_price" Type="nvarchar" MaxLength="50" />
+          <Property Name="store_latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="store_longitude" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityContainer Name="Optimization_RWModelStoreContainer">
+          <EntitySet Name="channels" EntityType="Self.channels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="deliveries" EntityType="Self.deliveries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="drivers" EntityType="Self.drivers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hubs" EntityType="Self.hubs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stores" EntityType="Self.stores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Optimization_RWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="channel">
+          <Key>
+            <PropertyRef Name="channel_id" />
+          </Key>
+          <Property Name="channel_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="channel_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="channel_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="delivery">
+          <Key>
+            <PropertyRef Name="delivery_id" />
+          </Key>
+          <Property Name="delivery_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="delivery_order_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="driver_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="delivery_distance_meters" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="delivery_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="driver">
+          <Key>
+            <PropertyRef Name="driver_id" />
+          </Key>
+          <Property Name="driver_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="driver_modal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="driver_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="current_latitude" Type="Double" />
+          <Property Name="current_longitude" Type="Double" />
+          <Property Name="driver_rating" Type="Int16" />
+          <Property Name="current_orders" Type="Int16" />
+        </EntityType>
+        <EntityType Name="hub">
+          <Key>
+            <PropertyRef Name="hub_id" />
+          </Key>
+          <Property Name="hub_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="hub_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hub_city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hub_state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="hub_latitude" Type="Double" />
+          <Property Name="hub_longitude" Type="Double" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="order_id" />
+          </Key>
+          <Property Name="order_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="store_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="channel_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="payment_order_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="delivery_order_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_amount" Type="Double" />
+          <Property Name="order_delivery_fee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_delivery_cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_created_hour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_created_minute" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_created_day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_created_month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_created_year" Type="Int32" />
+          <Property Name="order_moment_created" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_moment_accepted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_moment_ready" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_moment_collected" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_moment_in_expedition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_moment_delivering" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_moment_delivered" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_moment_finished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_collected_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_paused_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_production_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_walking_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_expediton_speed_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_transit_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_cycle_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="payment_order_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="payment_amount" Type="Double" />
+          <Property Name="payment_fee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payment_method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payment_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="store">
+          <Key>
+            <PropertyRef Name="store_id" />
+          </Key>
+          <Property Name="store_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="hub_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="store_segment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="store_plan_price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="store_latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="store_longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityContainer Name="Optimization_RWEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="channels" EntityType="Self.channel" />
+          <EntitySet Name="deliveries" EntityType="Self.delivery" />
+          <EntitySet Name="drivers" EntityType="Self.driver" />
+          <EntitySet Name="hubs" EntityType="Self.hub" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+          <EntitySet Name="payments" EntityType="Self.payment" />
+          <EntitySet Name="stores" EntityType="Self.store" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Optimization_RWModelStoreContainer" CdmEntityContainer="Optimization_RWEntities">
+          <EntitySetMapping Name="channels">
+            <EntityTypeMapping TypeName="Optimization_RWModel.channel">
+              <MappingFragment StoreEntitySet="channels">
+                <ScalarProperty Name="channel_id" ColumnName="channel_id" />
+                <ScalarProperty Name="channel_name" ColumnName="channel_name" />
+                <ScalarProperty Name="channel_type" ColumnName="channel_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="deliveries">
+            <EntityTypeMapping TypeName="Optimization_RWModel.delivery">
+              <MappingFragment StoreEntitySet="deliveries">
+                <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+                <ScalarProperty Name="delivery_order_id" ColumnName="delivery_order_id" />
+                <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+                <ScalarProperty Name="delivery_distance_meters" ColumnName="delivery_distance_meters" />
+                <ScalarProperty Name="delivery_status" ColumnName="delivery_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="drivers">
+            <EntityTypeMapping TypeName="Optimization_RWModel.driver">
+              <MappingFragment StoreEntitySet="drivers">
+                <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+                <ScalarProperty Name="driver_modal" ColumnName="driver_modal" />
+                <ScalarProperty Name="driver_type" ColumnName="driver_type" />
+                <ScalarProperty Name="current_latitude" ColumnName="current_latitude" />
+                <ScalarProperty Name="current_longitude" ColumnName="current_longitude" />
+                <ScalarProperty Name="driver_rating" ColumnName="driver_rating" />
+                <ScalarProperty Name="current_orders" ColumnName="current_orders" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hubs">
+            <EntityTypeMapping TypeName="Optimization_RWModel.hub">
+              <MappingFragment StoreEntitySet="hubs">
+                <ScalarProperty Name="hub_id" ColumnName="hub_id" />
+                <ScalarProperty Name="hub_name" ColumnName="hub_name" />
+                <ScalarProperty Name="hub_city" ColumnName="hub_city" />
+                <ScalarProperty Name="hub_state" ColumnName="hub_state" />
+                <ScalarProperty Name="hub_latitude" ColumnName="hub_latitude" />
+                <ScalarProperty Name="hub_longitude" ColumnName="hub_longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="Optimization_RWModel.order">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="channel_id" ColumnName="channel_id" />
+                <ScalarProperty Name="payment_order_id" ColumnName="payment_order_id" />
+                <ScalarProperty Name="delivery_order_id" ColumnName="delivery_order_id" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_delivery_fee" ColumnName="order_delivery_fee" />
+                <ScalarProperty Name="order_delivery_cost" ColumnName="order_delivery_cost" />
+                <ScalarProperty Name="order_created_hour" ColumnName="order_created_hour" />
+                <ScalarProperty Name="order_created_minute" ColumnName="order_created_minute" />
+                <ScalarProperty Name="order_created_day" ColumnName="order_created_day" />
+                <ScalarProperty Name="order_created_month" ColumnName="order_created_month" />
+                <ScalarProperty Name="order_created_year" ColumnName="order_created_year" />
+                <ScalarProperty Name="order_moment_created" ColumnName="order_moment_created" />
+                <ScalarProperty Name="order_moment_accepted" ColumnName="order_moment_accepted" />
+                <ScalarProperty Name="order_moment_ready" ColumnName="order_moment_ready" />
+                <ScalarProperty Name="order_moment_collected" ColumnName="order_moment_collected" />
+                <ScalarProperty Name="order_moment_in_expedition" ColumnName="order_moment_in_expedition" />
+                <ScalarProperty Name="order_moment_delivering" ColumnName="order_moment_delivering" />
+                <ScalarProperty Name="order_moment_delivered" ColumnName="order_moment_delivered" />
+                <ScalarProperty Name="order_moment_finished" ColumnName="order_moment_finished" />
+                <ScalarProperty Name="order_metric_collected_time" ColumnName="order_metric_collected_time" />
+                <ScalarProperty Name="order_metric_paused_time" ColumnName="order_metric_paused_time" />
+                <ScalarProperty Name="order_metric_production_time" ColumnName="order_metric_production_time" />
+                <ScalarProperty Name="order_metric_walking_time" ColumnName="order_metric_walking_time" />
+                <ScalarProperty Name="order_metric_expediton_speed_time" ColumnName="order_metric_expediton_speed_time" />
+                <ScalarProperty Name="order_metric_transit_time" ColumnName="order_metric_transit_time" />
+                <ScalarProperty Name="order_metric_cycle_time" ColumnName="order_metric_cycle_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="Optimization_RWModel.payment">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="payment_order_id" ColumnName="payment_order_id" />
+                <ScalarProperty Name="payment_amount" ColumnName="payment_amount" />
+                <ScalarProperty Name="payment_fee" ColumnName="payment_fee" />
+                <ScalarProperty Name="payment_method" ColumnName="payment_method" />
+                <ScalarProperty Name="payment_status" ColumnName="payment_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stores">
+            <EntityTypeMapping TypeName="Optimization_RWModel.store">
+              <MappingFragment StoreEntitySet="stores">
+                <ScalarProperty Name="store_id" ColumnName="store_id" />
+                <ScalarProperty Name="hub_id" ColumnName="hub_id" />
+                <ScalarProperty Name="store_name" ColumnName="store_name" />
+                <ScalarProperty Name="store_segment" ColumnName="store_segment" />
+                <ScalarProperty Name="store_plan_price" ColumnName="store_plan_price" />
+                <ScalarProperty Name="store_latitude" ColumnName="store_latitude" />
+                <ScalarProperty Name="store_longitude" ColumnName="store_longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Optimization_RWModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

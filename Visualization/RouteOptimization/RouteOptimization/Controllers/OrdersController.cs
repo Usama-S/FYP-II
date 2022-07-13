@@ -13,5 +13,11 @@ namespace RouteOptimization.Controllers
         {
             return View();
         }
+
+        // GET: Orders
+        public ActionResult Map()
+        {
+            return View();
+        }
     }
 }
