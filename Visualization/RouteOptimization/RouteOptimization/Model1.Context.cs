@@ -33,5 +33,6 @@ namespace RouteOptimization
         public virtual DbSet<payment> payments { get; set; }
         public virtual DbSet<store> stores { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<QryOrder> QryOrders { get; set; }
     }
 }
