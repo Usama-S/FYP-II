@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace RouteOptimization.Controllers
 {
-    public class OrdersController : Controller
+    public class MapsController : Controller
     {
-        // GET: Orders
+        // GET: Maps
         public ActionResult Index()
         {
             return View();

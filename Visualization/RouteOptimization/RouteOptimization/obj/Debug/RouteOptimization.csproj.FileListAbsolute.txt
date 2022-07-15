@@ -78,3 +78,7 @@ E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\obj\Debug\Rout
 E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\obj\Debug\RouteOptimization.csproj.CopyComplete
 E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\obj\Debug\RouteOptimization.dll
 E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\obj\Debug\RouteOptimization.pdb
+E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\bin\EntityFramework.dll
+E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\bin\EntityFramework.SqlServer.dll
+E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\bin\EntityFramework.xml
+E:\BS-SE\FYP-II\Visualization\RouteOptimization\RouteOptimization\bin\EntityFramework.SqlServer.xml

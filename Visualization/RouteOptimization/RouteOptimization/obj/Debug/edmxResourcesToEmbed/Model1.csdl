@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Optimization_RWModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="channel">
+    <Key>
+      <PropertyRef Name="channel_id" />
+    </Key>
+    <Property Name="channel_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="channel_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="channel_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="delivery">
+    <Key>
+      <PropertyRef Name="delivery_id" />
+    </Key>
+    <Property Name="delivery_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="delivery_order_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="driver_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="delivery_distance_meters" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="delivery_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="driver">
+    <Key>
+      <PropertyRef Name="driver_id" />
+    </Key>
+    <Property Name="driver_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="driver_modal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="current_latitude" Type="Double" />
+    <Property Name="current_longitude" Type="Double" />
+    <Property Name="driver_rating" Type="Int16" />
+    <Property Name="current_orders" Type="Int16" />
+  </EntityType>
+  <EntityType Name="hub">
+    <Key>
+      <PropertyRef Name="hub_id" />
+    </Key>
+    <Property Name="hub_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="hub_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_latitude" Type="Double" />
+    <Property Name="hub_longitude" Type="Double" />
+  </EntityType>
+  <EntityType Name="order">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="store_id" Type="Int32" Nullable="false" />
+    <Property Name="channel_id" Type="Int32" Nullable="false" />
+    <Property Name="payment_order_id" Type="Int32" Nullable="false" />
+    <Property Name="delivery_order_id" Type="Int32" Nullable="false" />
+    <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="order_amount" Type="Double" Nullable="false" />
+    <Property Name="order_delivery_fee" Type="Double" Nullable="false" />
+    <Property Name="order_delivery_cost" Type="Double" />
+    <Property Name="order_created_hour" Type="Int32" Nullable="false" />
+    <Property Name="order_created_minute" Type="Int32" Nullable="false" />
+    <Property Name="order_created_day" Type="Int32" Nullable="false" />
+    <Property Name="order_created_month" Type="Int32" Nullable="false" />
+    <Property Name="order_created_year" Type="Int32" Nullable="false" />
+    <Property Name="order_moment_created" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="order_moment_accepted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_ready" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_collected" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_in_expedition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_delivering" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_delivered" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_finished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_metric_collected_time" Type="Double" />
+    <Property Name="order_metric_paused_time" Type="Double" />
+    <Property Name="order_metric_production_time" Type="Double" />
+    <Property Name="order_metric_walking_time" Type="Double" />
+    <Property Name="order_metric_expediton_speed_time" Type="Double" />
+    <Property Name="order_metric_transit_time" Type="Double" />
+    <Property Name="order_metric_cycle_time" Type="Double" />
+  </EntityType>
+  <EntityType Name="payment">
+    <Key>
+      <PropertyRef Name="payment_id" />
+    </Key>
+    <Property Name="payment_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="payment_order_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="payment_amount" Type="Double" />
+    <Property Name="payment_fee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_method" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="payment_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="store">
+    <Key>
+      <PropertyRef Name="store_id" />
+    </Key>
+    <Property Name="store_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="hub_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_segment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_plan_price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="Optimization_RWEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="channels" EntityType="Self.channel" />
+    <EntitySet Name="deliveries" EntityType="Self.delivery" />
+    <EntitySet Name="drivers" EntityType="Self.driver" />
+    <EntitySet Name="hubs" EntityType="Self.hub" />
+    <EntitySet Name="orders" EntityType="Self.order" />
+    <EntitySet Name="payments" EntityType="Self.payment" />
+    <EntitySet Name="stores" EntityType="Self.store" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="QryOrders" EntityType="Optimization_RWModel.QryOrder" />
+  </EntityContainer>
+  <EntityType Name="QryOrder">
+    <Key>
+      <PropertyRef Name="order_id" />
+      <PropertyRef Name="store_id" />
+      <PropertyRef Name="delivery_id" />
+      <PropertyRef Name="order_status" />
+      <PropertyRef Name="order_created_hour" />
+      <PropertyRef Name="order_created_minute" />
+      <PropertyRef Name="order_created_day" />
+      <PropertyRef Name="order_created_month" />
+      <PropertyRef Name="order_created_year" />
+      <PropertyRef Name="order_moment_created" />
+    </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="store_id" Type="Int32" Nullable="false" />
+    <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="hub_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_latitude" Type="Double" />
+    <Property Name="hub_longitude" Type="Double" />
+    <Property Name="delivery_id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="delivery_distance_meters" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="delivery_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="current_latitude" Type="Double" />
+    <Property Name="current_longitude" Type="Double" />
+    <Property Name="driver_rating" Type="Int16" />
+    <Property Name="current_orders" Type="Int16" />
+    <Property Name="order_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_created_hour" Type="Int32" Nullable="false" />
+    <Property Name="order_created_minute" Type="Int32" Nullable="false" />
+    <Property Name="order_created_day" Type="Int32" Nullable="false" />
+    <Property Name="order_created_month" Type="Int32" Nullable="false" />
+    <Property Name="order_created_year" Type="Int32" Nullable="false" />
+    <Property Name="order_moment_created" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_accepted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_ready" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_in_expedition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_collected" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_delivering" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_delivered" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_finished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_metric_collected_time" Type="Double" />
+    <Property Name="order_metric_paused_time" Type="Double" />
+    <Property Name="order_metric_production_time" Type="Double" />
+    <Property Name="order_metric_walking_time" Type="Double" />
+    <Property Name="order_metric_expediton_speed_time" Type="Double" />
+    <Property Name="order_metric_transit_time" Type="Double" />
+    <Property Name="order_metric_cycle_time" Type="Double" />
+  </EntityType>
+</Schema>

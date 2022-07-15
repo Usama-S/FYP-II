@@ -14,8 +14,8 @@ namespace RouteOptimization
     
     public partial class QryOrder
     {
-        public decimal order_id { get; set; }
-        public Nullable<decimal> store_id { get; set; }
+        public int order_id { get; set; }
+        public int store_id { get; set; }
         public string store_name { get; set; }
         public string store_latitude { get; set; }
         public string store_longitude { get; set; }
@@ -34,11 +34,11 @@ namespace RouteOptimization
         public Nullable<short> driver_rating { get; set; }
         public Nullable<short> current_orders { get; set; }
         public string order_status { get; set; }
-        public string order_created_hour { get; set; }
-        public string order_created_minute { get; set; }
-        public string order_created_day { get; set; }
-        public string order_created_month { get; set; }
-        public Nullable<int> order_created_year { get; set; }
+        public int order_created_hour { get; set; }
+        public int order_created_minute { get; set; }
+        public int order_created_day { get; set; }
+        public int order_created_month { get; set; }
+        public int order_created_year { get; set; }
         public string order_moment_created { get; set; }
         public string order_moment_accepted { get; set; }
         public string order_moment_ready { get; set; }
@@ -47,12 +47,12 @@ namespace RouteOptimization
         public string order_moment_delivering { get; set; }
         public string order_moment_delivered { get; set; }
         public string order_moment_finished { get; set; }
-        public string order_metric_collected_time { get; set; }
-        public string order_metric_paused_time { get; set; }
-        public string order_metric_production_time { get; set; }
-        public string order_metric_walking_time { get; set; }
-        public string order_metric_expediton_speed_time { get; set; }
-        public string order_metric_transit_time { get; set; }
-        public string order_metric_cycle_time { get; set; }
+        public Nullable<double> order_metric_collected_time { get; set; }
+        public Nullable<double> order_metric_paused_time { get; set; }
+        public Nullable<double> order_metric_production_time { get; set; }
+        public Nullable<double> order_metric_walking_time { get; set; }
+        public Nullable<double> order_metric_expediton_speed_time { get; set; }
+        public Nullable<double> order_metric_transit_time { get; set; }
+        public Nullable<double> order_metric_cycle_time { get; set; }
     }
 }

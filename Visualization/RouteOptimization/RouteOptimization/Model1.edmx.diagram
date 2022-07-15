@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="769d51a5331e4320a647077fb9965e04" Name="Diagram1">
+      <Diagram DiagramId="e389e2c096e342029b174552ddd57a80" Name="Diagram1">
         <EntityTypeShape EntityType="Optimization_RWModel.channel" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Optimization_RWModel.delivery" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Optimization_RWModel.driver" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />

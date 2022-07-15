@@ -50,21 +50,21 @@
           <Key>
             <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="order_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="store_id" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="channel_id" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="payment_order_id" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="delivery_order_id" Type="numeric" Precision="18" Scale="0" />
-          <Property Name="order_status" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_amount" Type="float" />
-          <Property Name="order_delivery_fee" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_delivery_cost" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_hour" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_minute" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_day" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_month" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_year" Type="int" />
-          <Property Name="order_moment_created" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="store_id" Type="int" Nullable="false" />
+          <Property Name="channel_id" Type="int" Nullable="false" />
+          <Property Name="payment_order_id" Type="int" Nullable="false" />
+          <Property Name="delivery_order_id" Type="int" Nullable="false" />
+          <Property Name="order_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="order_amount" Type="float" Nullable="false" />
+          <Property Name="order_delivery_fee" Type="float" Nullable="false" />
+          <Property Name="order_delivery_cost" Type="float" />
+          <Property Name="order_created_hour" Type="int" Nullable="false" />
+          <Property Name="order_created_minute" Type="int" Nullable="false" />
+          <Property Name="order_created_day" Type="int" Nullable="false" />
+          <Property Name="order_created_month" Type="int" Nullable="false" />
+          <Property Name="order_created_year" Type="int" Nullable="false" />
+          <Property Name="order_moment_created" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="order_moment_accepted" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_ready" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_collected" Type="nvarchar" MaxLength="50" />
@@ -72,13 +72,13 @@
           <Property Name="order_moment_delivering" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_delivered" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_finished" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_collected_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_paused_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_production_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_walking_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_expediton_speed_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_transit_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_cycle_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_collected_time" Type="float" />
+          <Property Name="order_metric_paused_time" Type="float" />
+          <Property Name="order_metric_production_time" Type="float" />
+          <Property Name="order_metric_walking_time" Type="float" />
+          <Property Name="order_metric_expediton_speed_time" Type="float" />
+          <Property Name="order_metric_transit_time" Type="float" />
+          <Property Name="order_metric_cycle_time" Type="float" />
         </EntityType>
         <EntityType Name="payments">
           <Key>
@@ -118,10 +118,18 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
         <EntityType Name="QryOrders">
           <Key>
             <PropertyRef Name="order_id" />
+            <PropertyRef Name="store_id" />
             <PropertyRef Name="delivery_id" />
+            <PropertyRef Name="order_status" />
+            <PropertyRef Name="order_created_hour" />
+            <PropertyRef Name="order_created_minute" />
+            <PropertyRef Name="order_created_day" />
+            <PropertyRef Name="order_created_month" />
+            <PropertyRef Name="order_created_year" />
+            <PropertyRef Name="order_moment_created" />
           </Key>
-          <Property Name="order_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="store_id" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="store_id" Type="int" Nullable="false" />
           <Property Name="store_name" Type="nvarchar" MaxLength="50" />
           <Property Name="store_latitude" Type="nvarchar" MaxLength="50" />
           <Property Name="store_longitude" Type="nvarchar" MaxLength="50" />
@@ -139,13 +147,13 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
           <Property Name="current_longitude" Type="float" />
           <Property Name="driver_rating" Type="smallint" />
           <Property Name="current_orders" Type="smallint" />
-          <Property Name="order_status" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_hour" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_minute" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_day" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_month" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_created_year" Type="int" />
-          <Property Name="order_moment_created" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="order_created_hour" Type="int" Nullable="false" />
+          <Property Name="order_created_minute" Type="int" Nullable="false" />
+          <Property Name="order_created_day" Type="int" Nullable="false" />
+          <Property Name="order_created_month" Type="int" Nullable="false" />
+          <Property Name="order_created_year" Type="int" Nullable="false" />
+          <Property Name="order_moment_created" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="order_moment_accepted" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_ready" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_in_expedition" Type="nvarchar" MaxLength="50" />
@@ -153,13 +161,13 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
           <Property Name="order_moment_delivering" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_delivered" Type="nvarchar" MaxLength="50" />
           <Property Name="order_moment_finished" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_collected_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_paused_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_production_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_walking_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_expediton_speed_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_transit_time" Type="nvarchar" MaxLength="50" />
-          <Property Name="order_metric_cycle_time" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_metric_collected_time" Type="float" />
+          <Property Name="order_metric_paused_time" Type="float" />
+          <Property Name="order_metric_production_time" Type="float" />
+          <Property Name="order_metric_walking_time" Type="float" />
+          <Property Name="order_metric_expediton_speed_time" Type="float" />
+          <Property Name="order_metric_transit_time" Type="float" />
+          <Property Name="order_metric_cycle_time" Type="float" />
         </EntityType>
         <EntityContainer Name="Optimization_RWModelStoreContainer">
           <EntitySet Name="channels" EntityType="Self.channels" Schema="dbo" store:Type="Tables" />
@@ -264,21 +272,21 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
           <Key>
             <PropertyRef Name="order_id" />
           </Key>
-          <Property Name="order_id" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="store_id" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="channel_id" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="payment_order_id" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="delivery_order_id" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_amount" Type="Double" />
-          <Property Name="order_delivery_fee" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_delivery_cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_hour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_minute" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_year" Type="Int32" />
-          <Property Name="order_moment_created" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="store_id" Type="Int32" Nullable="false" />
+          <Property Name="channel_id" Type="Int32" Nullable="false" />
+          <Property Name="payment_order_id" Type="Int32" Nullable="false" />
+          <Property Name="delivery_order_id" Type="Int32" Nullable="false" />
+          <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="order_amount" Type="Double" Nullable="false" />
+          <Property Name="order_delivery_fee" Type="Double" Nullable="false" />
+          <Property Name="order_delivery_cost" Type="Double" />
+          <Property Name="order_created_hour" Type="Int32" Nullable="false" />
+          <Property Name="order_created_minute" Type="Int32" Nullable="false" />
+          <Property Name="order_created_day" Type="Int32" Nullable="false" />
+          <Property Name="order_created_month" Type="Int32" Nullable="false" />
+          <Property Name="order_created_year" Type="Int32" Nullable="false" />
+          <Property Name="order_moment_created" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="order_moment_accepted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_ready" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_collected" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -286,13 +294,13 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
           <Property Name="order_moment_delivering" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_delivered" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_finished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_collected_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_paused_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_production_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_walking_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_expediton_speed_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_transit_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_cycle_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_collected_time" Type="Double" />
+          <Property Name="order_metric_paused_time" Type="Double" />
+          <Property Name="order_metric_production_time" Type="Double" />
+          <Property Name="order_metric_walking_time" Type="Double" />
+          <Property Name="order_metric_expediton_speed_time" Type="Double" />
+          <Property Name="order_metric_transit_time" Type="Double" />
+          <Property Name="order_metric_cycle_time" Type="Double" />
         </EntityType>
         <EntityType Name="payment">
           <Key>
@@ -341,10 +349,18 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
         <EntityType Name="QryOrder">
           <Key>
             <PropertyRef Name="order_id" />
+            <PropertyRef Name="store_id" />
             <PropertyRef Name="delivery_id" />
+            <PropertyRef Name="order_status" />
+            <PropertyRef Name="order_created_hour" />
+            <PropertyRef Name="order_created_minute" />
+            <PropertyRef Name="order_created_day" />
+            <PropertyRef Name="order_created_month" />
+            <PropertyRef Name="order_created_year" />
+            <PropertyRef Name="order_moment_created" />
           </Key>
-          <Property Name="order_id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="store_id" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="store_id" Type="Int32" Nullable="false" />
           <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="store_latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="store_longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -362,13 +378,13 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
           <Property Name="current_longitude" Type="Double" />
           <Property Name="driver_rating" Type="Int16" />
           <Property Name="current_orders" Type="Int16" />
-          <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_hour" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_minute" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_month" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_created_year" Type="Int32" />
-          <Property Name="order_moment_created" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_created_hour" Type="Int32" Nullable="false" />
+          <Property Name="order_created_minute" Type="Int32" Nullable="false" />
+          <Property Name="order_created_day" Type="Int32" Nullable="false" />
+          <Property Name="order_created_month" Type="Int32" Nullable="false" />
+          <Property Name="order_created_year" Type="Int32" Nullable="false" />
+          <Property Name="order_moment_created" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_accepted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_ready" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_in_expedition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -376,13 +392,13 @@ warning 6002: The table/view 'Optimization_RW.dbo.QryOrders' does not have a pri
           <Property Name="order_moment_delivering" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_delivered" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="order_moment_finished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_collected_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_paused_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_production_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_walking_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_expediton_speed_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_transit_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="order_metric_cycle_time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_metric_collected_time" Type="Double" />
+          <Property Name="order_metric_paused_time" Type="Double" />
+          <Property Name="order_metric_production_time" Type="Double" />
+          <Property Name="order_metric_walking_time" Type="Double" />
+          <Property Name="order_metric_expediton_speed_time" Type="Double" />
+          <Property Name="order_metric_transit_time" Type="Double" />
+          <Property Name="order_metric_cycle_time" Type="Double" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>

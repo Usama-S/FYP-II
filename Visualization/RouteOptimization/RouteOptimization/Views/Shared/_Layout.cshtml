@@ -1,8 +1,8 @@
 ﻿@{
     // check controller name to set active class in navbar
     string homeClass = "";
-    string companiesClass = "";
-    string employeesClass = "";
+    string ordersClass = "";
+    string mapsClass = "";
     string designationsClass = "";
     string programsClass = "";
 
@@ -17,6 +17,12 @@
         {
             case "Home":
                 homeClass = "active";
+                break;
+            case "Orders":
+                ordersClass = "active";
+                break;
+            case "Maps":
+                mapsClass = "active";
                 break;
             default:
                 break;
@@ -40,10 +46,15 @@
     <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
     <link href="~/App_Files/CustomCss.css" rel="stylesheet" />
 
+    <!-- JS files -->
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/js/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+
     @RenderSection("HeadCSS", required: false)
     @RenderSection("HeadScripts", required: false)
 
-    <title>@ViewBag.Title - IKPortal</title>
+    <title>@ViewBag.Title - RTOptimization</title>
 </head>
 <body>
 
@@ -57,6 +68,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link @homeClass" href="/"><i class="fas fa-home"></i> Home</a>
+                    <a class="nav-link @ordersClass" href="/Orders/Index"><i class="fas fa-file-alt"></i> Orders</a>
+                    <a class="nav-link @ordersClass" href="/Maps/Index"><i class="fas fa-map-marked-alt"></i> Map</a>
                 </div>
             </div>
         </div>
@@ -96,12 +109,12 @@
 </html>
 
 <script>
-    $(document).ready(function () {
-        $('#datatable1').DataTable({
-            scrollX: 100
-        });
-        $('#datatable2').DataTable({
-            scrollX
-        });
-    });
+    //$(document).ready(function () {
+    //    $('#datatable1').DataTable({
+    //        scrollX: 100
+    //    });
+    //    $('#datatable2').DataTable({
+    //        scrollX
+    //    });
+    //});
 </script>
