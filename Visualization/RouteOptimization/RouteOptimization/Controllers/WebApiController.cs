@@ -23,19 +23,14 @@ namespace RouteOptimization.Controllers
                 // fetch orders of current hour only
                 var orders = db.QryOrders.Where(o => o.order_created_month == 1 &&
                 o.order_created_day == dt_now.Day &&
-                o.order_created_hour == dt_now.Hour &&
-                !(o.order_created_minute > dt_now.Minute) &&
+                ((o.order_created_hour == dt_now.Hour && !(o.order_created_minute > dt_now.Minute)) ||              // select orders of 
+                (o.order_created_hour == (dt_now.Hour - 1) && !(o.order_created_minute < dt_now.Minute))) &&        // last 1 hour.
                 !o.order_moment_created.Equals("") &&
                 !o.order_moment_accepted.Equals("") &&
                 !o.order_moment_ready.Equals("") &&
                 !o.order_status.Equals("CANCELED")).ToList();
 
-                /**
-                 * Consider:
-                    * order_moment_created = order recieved
-                    * order_moment_accepted = planned
-                    * order_moment_ready = out for delivery
-                 */
+
 
                 foreach (var item in orders)
                 {
