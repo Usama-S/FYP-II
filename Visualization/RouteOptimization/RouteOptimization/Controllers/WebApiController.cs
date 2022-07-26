@@ -59,5 +59,27 @@ namespace RouteOptimization.Controllers
                 return orders;
             };
         }
+
+
+        [Route("api/GetLocations")]
+        [HttpGet]
+        public Locations GetLocations()
+        {
+            using(var db = new Optimization_RWEntities())
+            {
+                var customers = db.stores.ToList();
+                var restaurants = db.hubs.ToList();
+                var riders = db.drivers.Take(10).ToList();
+
+                return new Locations(){ customers=customers, restaurants=restaurants, riders=riders};
+            }
+        }
+    }
+
+    public class Locations
+    {
+        public List<store> customers = new List<store>();
+        public List<hub> restaurants = new List<hub>();
+        public List<driver> riders = new List<driver>();
     }
 }
