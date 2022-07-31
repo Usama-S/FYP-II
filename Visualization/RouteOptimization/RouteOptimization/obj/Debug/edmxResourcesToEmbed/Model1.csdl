@@ -118,6 +118,44 @@
     <EntitySet Name="stores" EntityType="Self.store" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="QryOrders" EntityType="Optimization_RWModel.QryOrder" />
+    <FunctionImport Name="GetRidersIn5KmRadius" ReturnType="Collection(Optimization_RWModel.GetRidersIn5KmRadius_Result)">
+      <Parameter Name="p_lat" Mode="In" Type="Double" />
+      <Parameter Name="p_long" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Optimization_RWModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Optimization_RWModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="GetRidersIn5KmRadius1" EntitySet="drivers" ReturnType="Collection(Optimization_RWModel.driver)">
+      <Parameter Name="p_lat" Mode="In" Type="Double" />
+      <Parameter Name="p_long" Mode="In" Type="Double" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="QryOrder">
     <Key>
@@ -173,4 +211,24 @@
     <Property Name="order_metric_transit_time" Type="Double" />
     <Property Name="order_metric_cycle_time" Type="Double" />
   </EntityType>
+  <ComplexType Name="GetRidersIn5KmRadius_Result">
+    <Property Type="Decimal" Name="driver_id" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="driver_modal" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="driver_type" Nullable="true" MaxLength="50" />
+    <Property Type="Double" Name="current_latitude" Nullable="true" />
+    <Property Type="Double" Name="current_longitude" Nullable="true" />
+    <Property Type="Int16" Name="driver_rating" Nullable="true" />
+    <Property Type="Int16" Name="current_orders" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
 </Schema>

@@ -36,18 +36,19 @@ namespace RouteOptimization
         public virtual DbSet<store> stores { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<QryOrder> QryOrders { get; set; }
+        public virtual DbSet<orders_processed> orders_processed { get; set; }
     
-        public virtual ObjectResult<GetRidersIn5KmRadius_Result> GetRidersIn5KmRadius(Nullable<double> p_lat, Nullable<double> p_long)
+        public virtual ObjectResult<GetRidersIn5KmRadius_Result> GetRidersIn5KmRadius(Nullable<double> lat, Nullable<double> @long)
         {
-            var p_latParameter = p_lat.HasValue ?
-                new ObjectParameter("p_lat", p_lat) :
-                new ObjectParameter("p_lat", typeof(double));
+            var latParameter = lat.HasValue ?
+                new ObjectParameter("lat", lat) :
+                new ObjectParameter("lat", typeof(double));
     
-            var p_longParameter = p_long.HasValue ?
-                new ObjectParameter("p_long", p_long) :
-                new ObjectParameter("p_long", typeof(double));
+            var longParameter = @long.HasValue ?
+                new ObjectParameter("long", @long) :
+                new ObjectParameter("long", typeof(double));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRidersIn5KmRadius_Result>("GetRidersIn5KmRadius", p_latParameter, p_longParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetRidersIn5KmRadius_Result>("GetRidersIn5KmRadius", latParameter, longParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -151,6 +152,32 @@ namespace RouteOptimization
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<driver> GetRidersIn5KmRadius1(Nullable<double> lat, Nullable<double> @long)
+        {
+            var latParameter = lat.HasValue ?
+                new ObjectParameter("lat", lat) :
+                new ObjectParameter("lat", typeof(double));
+    
+            var longParameter = @long.HasValue ?
+                new ObjectParameter("long", @long) :
+                new ObjectParameter("long", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<driver>("GetRidersIn5KmRadius1", latParameter, longParameter);
+        }
+    
+        public virtual ObjectResult<driver> GetRidersIn5KmRadius1(Nullable<double> lat, Nullable<double> @long, MergeOption mergeOption)
+        {
+            var latParameter = lat.HasValue ?
+                new ObjectParameter("lat", lat) :
+                new ObjectParameter("lat", typeof(double));
+    
+            var longParameter = @long.HasValue ?
+                new ObjectParameter("long", @long) :
+                new ObjectParameter("long", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<driver>("GetRidersIn5KmRadius1", mergeOption, latParameter, longParameter);
         }
     }
 }

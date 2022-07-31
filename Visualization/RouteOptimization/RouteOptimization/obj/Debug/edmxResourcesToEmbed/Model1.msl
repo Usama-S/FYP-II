@@ -163,5 +163,43 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetRidersIn5KmRadius" FunctionName="Optimization_RWModel.Store.GetRidersIn5KmRadius">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Optimization_RWModel.GetRidersIn5KmRadius_Result">
+          <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+          <ScalarProperty Name="driver_modal" ColumnName="driver_modal" />
+          <ScalarProperty Name="driver_type" ColumnName="driver_type" />
+          <ScalarProperty Name="current_latitude" ColumnName="current_latitude" />
+          <ScalarProperty Name="current_longitude" ColumnName="current_longitude" />
+          <ScalarProperty Name="driver_rating" ColumnName="driver_rating" />
+          <ScalarProperty Name="current_orders" ColumnName="current_orders" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Optimization_RWModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Optimization_RWModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Optimization_RWModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Optimization_RWModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Optimization_RWModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Optimization_RWModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="Optimization_RWModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Optimization_RWModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Optimization_RWModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="GetRidersIn5KmRadius1" FunctionName="Optimization_RWModel.Store.GetRidersIn5KmRadius" />
   </EntityContainerMapping>
 </Mapping>

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace RouteOptimization
 {
-    public class GFG
+    public class Coordinates
     {
         // C# program to calculate 
         // Distance Between Two
@@ -17,7 +17,7 @@ namespace RouteOptimization
             // of a degree
             return (angleIn10thofaDegree * Math.PI) / 180;
         }
-        static double distance(double lat1,double lat2,double lon1,double lon2)
+        public static double distance(double lat1,double lat2,double lon1,double lon2)
         {
 
             // The math module contains
