@@ -15,7 +15,8 @@ namespace RouteOptimization.Controllers
         [HttpGet]
         public List<orders_processed> GetOrders()
         {
-            return UtilityClass.GetCurrentHourOrders();
+            var orders = UtilityClass.GetCurrentHourOrders();
+            return orders;
             //using (var db = new Optimization_RWEntities())
             //{
 

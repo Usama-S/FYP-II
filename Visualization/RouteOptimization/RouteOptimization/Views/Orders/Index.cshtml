@@ -67,6 +67,7 @@ Columns to view
         },
         "ajax": {
             "url": '/api/GetOrders',
+            "timeout": 600000,
             "dataType": "json",
             "type": "GET",
             "dataSrc": ""
@@ -77,6 +78,9 @@ Columns to view
         }, {
             "mData": "order_moment_created",
             "sTitle": "Order Date & Time"
+        }, {
+            "mData": "order_moment_finished",
+            "sTitle": "Finished Time"
         }, {
             "mData": "hub_name",
             "sTitle": "Restaurant"
@@ -100,6 +104,6 @@ Columns to view
         ]
     });
 
-    setInterval(function () { table.ajax.reload(); }, 15000);
+    setInterval(function () { table.ajax.reload(); }, 30000);
 
 </script>

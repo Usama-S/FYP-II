@@ -31,9 +31,9 @@ namespace RouteOptimization.App_Files
             using (var db = new Optimization_RWEntities())
             {
                 var dt_now = DateTime.Now;
+                // var dt_no = new DateTime(2021, 1, dt_now.Day, 21, dt_now.Minute, dt_now.Second);
 
-                //var dateTime = new DateTime(2021, 1, dt_now.Day, dt_now.Hour, dt_now.Minute, dt_now.Second);
-                var dateTime = new DateTime(2021, 1, dt_now.Day, 21, dt_now.Minute, dt_now.Second);
+                var dateTime = new DateTime(2021, 1, dt_now.Day, dt_now.Hour, dt_now.Minute, dt_now.Second);
 
                 db.Database.CommandTimeout = 500;
 
@@ -55,33 +55,36 @@ namespace RouteOptimization.App_Files
                  * 
                  * */
 
-
+                int i = 0;
                 foreach (var item in orders)
                 {
                     // get all comparable times of the order.
                     var dt_cre = Convert.ToDateTime(item.order_moment_created, new CultureInfo("en-US"));
                     var dt_acc = Convert.ToDateTime(item.order_moment_accepted, new CultureInfo("en-US"));
                     var dt_ass = Convert.ToDateTime(item.order_moment_ready, new CultureInfo("en-US"));
-                    var dt_del = Convert.ToDateTime(item.order_moment_delivered, new CultureInfo("en-US"));
-
+                    var dt_fin = Convert.ToDateTime(item.order_moment_finished, new CultureInfo("en-US"));
 
                     // if no driver id is assigned and time is less than order_moment_accepted, then the order is NEW
                     if (item.driver_id == null && dateTime < dt_acc)
                         item.order_status = ORDER_STATUS_NEW;
-                    else if (item.driver_id == null && dateTime >= dt_acc)  // if the time is greater than order_moment_accepted, send the order to optimization algorithm.
+                    // else if (item.driver_id == null && dateTime >= dt_acc)  // if the time is greater than order_moment_accepted, send the order to optimization algorithm.
+                    else if (item.driver_id == null && i < 10)  // if the time is greater than order_moment_accepted, send the order to optimization algorithm.
+                    {
                         Optimization.Optimize(item);
+                    }
                     else
                     {
                         // if the order is assigned some driver id, set the status according to time.
-                        if (dateTime < dt_del)
+                        if (dateTime < dt_fin)
                         {
                             item.order_status = ORDER_STATUS_DELIVERING;
                         }
-                        else if (dateTime >= dt_del)
+                        else if (dateTime >= dt_fin)
                         {
                             item.order_status = ORDER_STATUS_FINISHED;
                         }
                     }
+                    i++;
                 }
 
                 // save the changes in the database.

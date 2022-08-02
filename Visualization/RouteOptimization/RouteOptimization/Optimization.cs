@@ -98,7 +98,6 @@ namespace RouteOptimization
                     {
                         // add current rider to the possible riders array.
                         possible_riders.Add(all_riders[i]);
-                        possible_riders.Add(all_riders[i]);
                         j++;
                     }
 
