@@ -179,5 +179,23 @@ namespace RouteOptimization
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<driver>("GetRidersIn5KmRadius1", mergeOption, latParameter, longParameter);
         }
+    
+        public virtual ObjectResult<Nullable<int>> GetRidersCurrentOrderCount(Nullable<decimal> rider_id)
+        {
+            var rider_idParameter = rider_id.HasValue ?
+                new ObjectParameter("rider_id", rider_id) :
+                new ObjectParameter("rider_id", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("GetRidersCurrentOrderCount", rider_idParameter);
+        }
+    
+        public virtual int GetRidersCurrentOrderCount1(Nullable<decimal> rider_id)
+        {
+            var rider_idParameter = rider_id.HasValue ?
+                new ObjectParameter("rider_id", rider_id) :
+                new ObjectParameter("rider_id", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetRidersCurrentOrderCount1", rider_idParameter);
+        }
     }
 }

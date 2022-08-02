@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RouteOptimization.App_Files;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,7 +13,86 @@ namespace RouteOptimization.Controllers
     {
         [Route("api/GetOrders")]
         [HttpGet]
-        public List<QryOrder> GetOrders()
+        public List<orders_processed> GetOrders()
+        {
+            return UtilityClass.GetCurrentHourOrders();
+            //using (var db = new Optimization_RWEntities())
+            //{
+
+
+            //    // where order dirver_id = null
+            //    //      check order_moment_ready   
+            //    //          send for optimization
+            //    // else 
+            //    //      
+
+
+
+
+
+
+
+            //    foreach (var item in orders)
+            //    {
+            //        var dt_cre = Convert.ToDateTime(item.order_moment_created, new CultureInfo("en-US"));
+            //        var dt_acc = Convert.ToDateTime(item.order_moment_accepted, new CultureInfo("en-US"));
+            //        var dt_ass = Convert.ToDateTime(item.order_moment_ready, new CultureInfo("en-US"));
+            //        var dt_del = Convert.ToDateTime(item.order_moment_delivered, new CultureInfo("en-US"));
+
+
+
+            //        if (dateTime < dt_acc)
+            //        {
+            //            item.order_status = "NEW";
+            //        }
+            //        else if (dateTime < dt_acc)
+            //        {
+            //            item.order_status = "NEW";
+            //        }
+            //        else if (dateTime < dt_ass)
+            //        {
+            //            item.order_status = "ASSIGNED";
+            //        }
+            //        else if (dateTime < dt_del)
+            //        {
+            //            item.order_status = "DELIVERING";
+            //        }
+            //    }
+
+
+
+            //    return orders;
+            //};
+        }
+
+
+        [Route("api/GetLocations")]
+        [HttpGet]
+        public Locations GetLocations()
+        {
+            using(var db = new Optimization_RWEntities())
+            {
+                var customers = db.stores.ToList();
+                var restaurants = db.hubs.ToList();
+                var riders = db.drivers.Take(10).ToList();
+
+                return new Locations(){ customers=customers, restaurants=restaurants, riders=riders};
+            }
+        }
+    }
+
+    public class Locations
+    {
+        public List<store> customers = new List<store>();
+        public List<hub> restaurants = new List<hub>();
+        public List<driver> riders = new List<driver>();
+    }
+}
+
+
+
+/*** mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm Old GetOrders code mmmmmmmmmmmmmmmmmmmmmmmmmmmmmm.
+ * public List<QryOrder> GetOrders()
         {
             using (var db = new Optimization_RWEntities())
             {
@@ -60,26 +140,4 @@ namespace RouteOptimization.Controllers
             };
         }
 
-
-        [Route("api/GetLocations")]
-        [HttpGet]
-        public Locations GetLocations()
-        {
-            using(var db = new Optimization_RWEntities())
-            {
-                var customers = db.stores.ToList();
-                var restaurants = db.hubs.ToList();
-                var riders = db.drivers.Take(10).ToList();
-
-                return new Locations(){ customers=customers, restaurants=restaurants, riders=riders};
-            }
-        }
-    }
-
-    public class Locations
-    {
-        public List<store> customers = new List<store>();
-        public List<hub> restaurants = new List<hub>();
-        public List<driver> riders = new List<driver>();
-    }
-}
+**/

@@ -80,14 +80,24 @@ namespace RouteOptimization
                 {
                     var rider_id = all_riders[i].driver_id;     // get rider id
 
-                    // get the order count for this rider
-                    var order_count = db.orders_processed.Where(w => w.driver_id == rider_id &&
-                    !w.order_status.Equals("FINISHED")).Count();
+                    //// get the order count for this rider
+                    //var order_count = db.orders_processed.Where(w => w.driver_id == rider_id &&
+                    //!w.order_status.Equals("FINISHED")).Count();
+
+                    // define parameters for the stored procedure to be called.
+                    SqlParameter[] param2 = new SqlParameter[] { new SqlParameter("@rider_id", rider_id) };
+                    // call stored procedure that will return all the riders within an area of 5 km in the form of a list.
+                    // var order_count = db.Database.SqlQuery<Item>("GetRidersCurrentOrderCount @rider_id", param2);
+
+                    var data = db.Database.SqlQuery<int>(@"declare @num int exec @num = GetRidersCurrentOrderCount @rider_id select @num", param2);
+
+                    var order_count = data.First();
 
                     // if the orders of this rider is less than 5, then add to the possible riders array
                     if (order_count < MAX_ORDERS)
                     {
                         // add current rider to the possible riders array.
+                        possible_riders.Add(all_riders[i]);
                         possible_riders.Add(all_riders[i]);
                         j++;
                     }

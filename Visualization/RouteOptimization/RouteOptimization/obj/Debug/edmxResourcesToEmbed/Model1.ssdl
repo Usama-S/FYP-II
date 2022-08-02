@@ -75,6 +75,62 @@
     <Property Name="order_metric_transit_time" Type="float" />
     <Property Name="order_metric_cycle_time" Type="float" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Optimization_P2.dbo.orders_processed' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="orders_processed">
+    <Key>
+      <PropertyRef Name="order_id" />
+      <PropertyRef Name="store_id" />
+      <PropertyRef Name="delivery_id" />
+      <PropertyRef Name="order_status" />
+      <PropertyRef Name="order_created_hour" />
+      <PropertyRef Name="order_created_minute" />
+      <PropertyRef Name="order_created_day" />
+      <PropertyRef Name="order_created_month" />
+      <PropertyRef Name="order_created_year" />
+      <PropertyRef Name="order_moment_created" />
+    </Key>
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="store_id" Type="int" Nullable="false" />
+    <Property Name="store_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="store_latitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="store_longitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_id" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="hub_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_city" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_state" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_latitude" Type="float" />
+    <Property Name="hub_longitude" Type="float" />
+    <Property Name="delivery_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="delivery_distance_meters" Type="nvarchar" MaxLength="50" />
+    <Property Name="delivery_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="driver_id" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="current_latitude" Type="float" />
+    <Property Name="current_longitude" Type="float" />
+    <Property Name="driver_rating" Type="smallint" />
+    <Property Name="current_orders" Type="smallint" />
+    <Property Name="order_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="order_created_hour" Type="int" Nullable="false" />
+    <Property Name="order_created_minute" Type="int" Nullable="false" />
+    <Property Name="order_created_day" Type="int" Nullable="false" />
+    <Property Name="order_created_month" Type="int" Nullable="false" />
+    <Property Name="order_created_year" Type="int" Nullable="false" />
+    <Property Name="order_moment_created" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="order_moment_accepted" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_ready" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_in_expedition" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_collected" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_delivering" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_delivered" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_finished" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_metric_collected_time" Type="float" />
+    <Property Name="order_metric_paused_time" Type="float" />
+    <Property Name="order_metric_production_time" Type="float" />
+    <Property Name="order_metric_walking_time" Type="float" />
+    <Property Name="order_metric_expediton_speed_time" Type="float" />
+    <Property Name="order_metric_transit_time" Type="float" />
+    <Property Name="order_metric_cycle_time" Type="float" />
+  </EntityType>
   <EntityType Name="payments">
     <Key>
       <PropertyRef Name="payment_id" />
@@ -165,9 +221,12 @@ warning 6002: The table/view 'Optimization_P2.dbo.QryOrders' does not have a pri
     <Property Name="order_metric_cycle_time" Type="float" />
   </EntityType>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="GetRidersCurrentOrderCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="rider_id" Type="numeric" Mode="In" />
+  </Function>
   <Function Name="GetRidersIn5KmRadius" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-    <Parameter Name="p_lat" Type="float" Mode="In" />
-    <Parameter Name="p_long" Type="float" Mode="In" />
+    <Parameter Name="lat" Type="float" Mode="In" />
+    <Parameter Name="long" Type="float" Mode="In" />
   </Function>
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -208,6 +267,50 @@ warning 6002: The table/view 'Optimization_P2.dbo.QryOrders' does not have a pri
     <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="stores" EntityType="Self.stores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders_processed" EntityType="Self.orders_processed" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [orders_processed].[order_id] AS [order_id], 
+    [orders_processed].[store_id] AS [store_id], 
+    [orders_processed].[store_name] AS [store_name], 
+    [orders_processed].[store_latitude] AS [store_latitude], 
+    [orders_processed].[store_longitude] AS [store_longitude], 
+    [orders_processed].[hub_id] AS [hub_id], 
+    [orders_processed].[hub_name] AS [hub_name], 
+    [orders_processed].[hub_city] AS [hub_city], 
+    [orders_processed].[hub_state] AS [hub_state], 
+    [orders_processed].[hub_latitude] AS [hub_latitude], 
+    [orders_processed].[hub_longitude] AS [hub_longitude], 
+    [orders_processed].[delivery_id] AS [delivery_id], 
+    [orders_processed].[delivery_distance_meters] AS [delivery_distance_meters], 
+    [orders_processed].[delivery_status] AS [delivery_status], 
+    [orders_processed].[driver_id] AS [driver_id], 
+    [orders_processed].[current_latitude] AS [current_latitude], 
+    [orders_processed].[current_longitude] AS [current_longitude], 
+    [orders_processed].[driver_rating] AS [driver_rating], 
+    [orders_processed].[current_orders] AS [current_orders], 
+    [orders_processed].[order_status] AS [order_status], 
+    [orders_processed].[order_created_hour] AS [order_created_hour], 
+    [orders_processed].[order_created_minute] AS [order_created_minute], 
+    [orders_processed].[order_created_day] AS [order_created_day], 
+    [orders_processed].[order_created_month] AS [order_created_month], 
+    [orders_processed].[order_created_year] AS [order_created_year], 
+    [orders_processed].[order_moment_created] AS [order_moment_created], 
+    [orders_processed].[order_moment_accepted] AS [order_moment_accepted], 
+    [orders_processed].[order_moment_ready] AS [order_moment_ready], 
+    [orders_processed].[order_moment_in_expedition] AS [order_moment_in_expedition], 
+    [orders_processed].[order_moment_collected] AS [order_moment_collected], 
+    [orders_processed].[order_moment_delivering] AS [order_moment_delivering], 
+    [orders_processed].[order_moment_delivered] AS [order_moment_delivered], 
+    [orders_processed].[order_moment_finished] AS [order_moment_finished], 
+    [orders_processed].[order_metric_collected_time] AS [order_metric_collected_time], 
+    [orders_processed].[order_metric_paused_time] AS [order_metric_paused_time], 
+    [orders_processed].[order_metric_production_time] AS [order_metric_production_time], 
+    [orders_processed].[order_metric_walking_time] AS [order_metric_walking_time], 
+    [orders_processed].[order_metric_expediton_speed_time] AS [order_metric_expediton_speed_time], 
+    [orders_processed].[order_metric_transit_time] AS [order_metric_transit_time], 
+    [orders_processed].[order_metric_cycle_time] AS [order_metric_cycle_time]
+    FROM [dbo].[orders_processed] AS [orders_processed]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="QryOrders" EntityType="Self.QryOrders" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [QryOrders].[order_id] AS [order_id], 

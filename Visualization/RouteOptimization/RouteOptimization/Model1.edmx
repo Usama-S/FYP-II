@@ -226,6 +226,9 @@ warning 6002: The table/view 'Optimization_P2.dbo.QryOrders' does not have a pri
           <Property Name="order_metric_cycle_time" Type="float" />
         </EntityType>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetRidersCurrentOrderCount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="rider_id" Type="numeric" Mode="In" />
+        </Function>
         <Function Name="GetRidersIn5KmRadius" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="lat" Type="float" Mode="In" />
           <Parameter Name="long" Type="float" Mode="In" />
@@ -519,6 +522,12 @@ warning 6002: The table/view 'Optimization_P2.dbo.QryOrders' does not have a pri
             <Parameter Name="long" Mode="In" Type="Double" />
           </FunctionImport>
           <EntitySet Name="orders_processed" EntityType="Optimization_RWModel.orders_processed" />
+          <FunctionImport Name="GetRidersCurrentOrderCount" ReturnType="Collection(Int32)">
+          <Parameter Name="rider_id" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GetRidersCurrentOrderCount1">
+          <Parameter Name="rider_id" Mode="In" Type="Decimal" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="QryOrder">
           <Key>
@@ -900,6 +909,8 @@ warning 6002: The table/view 'Optimization_P2.dbo.QryOrders' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetRidersCurrentOrderCount" FunctionName="Optimization_RWModel.Store.GetRidersCurrentOrderCount" />
+          <FunctionImportMapping FunctionImportName="GetRidersCurrentOrderCount1" FunctionName="Optimization_RWModel.Store.GetRidersCurrentOrderCount" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

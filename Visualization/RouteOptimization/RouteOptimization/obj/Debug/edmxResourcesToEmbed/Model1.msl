@@ -201,5 +201,53 @@
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Optimization_RWModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Optimization_RWModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="GetRidersIn5KmRadius1" FunctionName="Optimization_RWModel.Store.GetRidersIn5KmRadius" />
+    <EntitySetMapping Name="orders_processed">
+      <EntityTypeMapping TypeName="Optimization_RWModel.orders_processed">
+        <MappingFragment StoreEntitySet="orders_processed">
+          <ScalarProperty Name="order_metric_cycle_time" ColumnName="order_metric_cycle_time" />
+          <ScalarProperty Name="order_metric_transit_time" ColumnName="order_metric_transit_time" />
+          <ScalarProperty Name="order_metric_expediton_speed_time" ColumnName="order_metric_expediton_speed_time" />
+          <ScalarProperty Name="order_metric_walking_time" ColumnName="order_metric_walking_time" />
+          <ScalarProperty Name="order_metric_production_time" ColumnName="order_metric_production_time" />
+          <ScalarProperty Name="order_metric_paused_time" ColumnName="order_metric_paused_time" />
+          <ScalarProperty Name="order_metric_collected_time" ColumnName="order_metric_collected_time" />
+          <ScalarProperty Name="order_moment_finished" ColumnName="order_moment_finished" />
+          <ScalarProperty Name="order_moment_delivered" ColumnName="order_moment_delivered" />
+          <ScalarProperty Name="order_moment_delivering" ColumnName="order_moment_delivering" />
+          <ScalarProperty Name="order_moment_collected" ColumnName="order_moment_collected" />
+          <ScalarProperty Name="order_moment_in_expedition" ColumnName="order_moment_in_expedition" />
+          <ScalarProperty Name="order_moment_ready" ColumnName="order_moment_ready" />
+          <ScalarProperty Name="order_moment_accepted" ColumnName="order_moment_accepted" />
+          <ScalarProperty Name="order_moment_created" ColumnName="order_moment_created" />
+          <ScalarProperty Name="order_created_year" ColumnName="order_created_year" />
+          <ScalarProperty Name="order_created_month" ColumnName="order_created_month" />
+          <ScalarProperty Name="order_created_day" ColumnName="order_created_day" />
+          <ScalarProperty Name="order_created_minute" ColumnName="order_created_minute" />
+          <ScalarProperty Name="order_created_hour" ColumnName="order_created_hour" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="current_orders" ColumnName="current_orders" />
+          <ScalarProperty Name="driver_rating" ColumnName="driver_rating" />
+          <ScalarProperty Name="current_longitude" ColumnName="current_longitude" />
+          <ScalarProperty Name="current_latitude" ColumnName="current_latitude" />
+          <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+          <ScalarProperty Name="delivery_status" ColumnName="delivery_status" />
+          <ScalarProperty Name="delivery_distance_meters" ColumnName="delivery_distance_meters" />
+          <ScalarProperty Name="delivery_id" ColumnName="delivery_id" />
+          <ScalarProperty Name="hub_longitude" ColumnName="hub_longitude" />
+          <ScalarProperty Name="hub_latitude" ColumnName="hub_latitude" />
+          <ScalarProperty Name="hub_state" ColumnName="hub_state" />
+          <ScalarProperty Name="hub_city" ColumnName="hub_city" />
+          <ScalarProperty Name="hub_name" ColumnName="hub_name" />
+          <ScalarProperty Name="hub_id" ColumnName="hub_id" />
+          <ScalarProperty Name="store_longitude" ColumnName="store_longitude" />
+          <ScalarProperty Name="store_latitude" ColumnName="store_latitude" />
+          <ScalarProperty Name="store_name" ColumnName="store_name" />
+          <ScalarProperty Name="store_id" ColumnName="store_id" />
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="GetRidersCurrentOrderCount" FunctionName="Optimization_RWModel.Store.GetRidersCurrentOrderCount" />
+    <FunctionImportMapping FunctionImportName="GetRidersCurrentOrderCount1" FunctionName="Optimization_RWModel.Store.GetRidersCurrentOrderCount" />
   </EntityContainerMapping>
 </Mapping>

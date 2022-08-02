@@ -26,7 +26,14 @@ FROM            dbo.orders INNER JOIN
 
 
 
-
+-- current query to get orders of the last hour.
+select * from orders_processed where 
+order_created_month = 1 and order_created_day = 2 and
+((order_created_hour = 21 and not (order_created_minute > 30)) or
+(order_created_hour = 20 and not (order_created_minute < 30))) and
+not order_moment_created = ('') and
+not order_moment_accepted = ('') and
+not order_moment_ready = ('')
 
 
 
