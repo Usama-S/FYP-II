@@ -30,8 +30,8 @@ namespace RouteOptimization.App_Files
         {
             using (var db = new Optimization_RWEntities())
             {
-                var dt_now = DateTime.Now;
-                // var dt_no = new DateTime(2021, 1, dt_now.Day, 21, dt_now.Minute, dt_now.Second);
+                var dt_no = DateTime.Now;
+                var dt_now = new DateTime(2021, 1, dt_no.Day, 21, dt_no.Minute, dt_no.Second);
 
                 var dateTime = new DateTime(2021, 1, dt_now.Day, dt_now.Hour, dt_now.Minute, dt_now.Second);
 
@@ -55,7 +55,7 @@ namespace RouteOptimization.App_Files
                  * 
                  * */
 
-                int i = 0;
+                int i = orders.Count;
                 foreach (var item in orders)
                 {
                     // get all comparable times of the order.
@@ -67,11 +67,8 @@ namespace RouteOptimization.App_Files
                     // if no driver id is assigned and time is less than order_moment_accepted, then the order is NEW
                     if (item.driver_id == null && dateTime < dt_acc)
                         item.order_status = ORDER_STATUS_NEW;
-                    // else if (item.driver_id == null && dateTime >= dt_acc)  // if the time is greater than order_moment_accepted, send the order to optimization algorithm.
-                    else if (item.driver_id == null && i < 10)  // if the time is greater than order_moment_accepted, send the order to optimization algorithm.
-                    {
+                    else if (item.driver_id == null && dateTime >= dt_acc && i < 10 && i >=0)  // if the time is greater than order_moment_accepted, send the order to optimization algorithm.
                         Optimization.Optimize(item);
-                    }
                     else
                     {
                         // if the order is assigned some driver id, set the status according to time.
@@ -84,7 +81,7 @@ namespace RouteOptimization.App_Files
                             item.order_status = ORDER_STATUS_FINISHED;
                         }
                     }
-                    i++;
+                    i--;
                 }
 
                 // save the changes in the database.
