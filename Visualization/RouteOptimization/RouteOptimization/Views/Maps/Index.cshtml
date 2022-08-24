@@ -13,15 +13,142 @@
     <!-- mapbox libraries -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+    
+    <style>
+        #container {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        @@media (min-width: 10px){
+            #container {
+                max-width: 100%;
+            }
+        }
+
+        hr {
+            margin-top: 0;
+            visibility: hidden
+        }
+
+        #footer {
+            display: none
+        }
+
+/* css for map filling remaining space */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            flex-flow: column;
+            height: 100%;
+        }
+
+        nav {
+            flex: 0 1 auto;
+        }
+
+        #container {
+            flex: 1 1 auto;
+        }
+
+        #footer {
+            flex: 0 1 40px;
+        }
+
+    </style>
 }
 
 
 @*<h2>Maps</h2>*@
 
-<div id='map' style='width: 100% !important; height: 550px; border: 1px black solid;'></div>
+<div id='map' style='width: 100% !important; height:100%; border: 1px black solid;'></div>
 
 
 @section FootScripts{
+    <script>
+        // initialize map
+        var center = [-48.940973, -20.817396];        // [lng, lat]
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWFwYm95MTIzIiwiYSI6ImNrbDkxaTE2azJ4aXYydmxidGM1NnVjaG8ifQ.Q9J8T_2V96wWYie64dL-KA';
+        const map = new mapboxgl.Map({
+            container: 'map', // container ID
+            style: 'mapbox://styles/mapbox/streets-v11', // style URL
+            center: center, // starting position [lng, lat]
+            zoom: 5 // starting zoom
+        });
+
+        // method to call AJAX to get Locations data.
+        function GetLocations() {
+            var url = '/api/GetLocations';
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", url);
+            xhr.onload = function () {
+                var response = JSON.parse(xhr.response);
+                console.log(response);
+                // deal with the data here...
+
+                // set all restaurant points...
+                var restaurants = response.restaurants;
+                for (let i = 0; i < restaurants.length; i++) {
+
+                    // styling for restaurant point
+                    const el = document.createElement('div');
+                    const width = 30;
+                    const height = 45;
+                    el.className = 'marker';
+                    el.style.backgroundImage = `url(/App_Images/restaurant.png)`;
+                    el.style.backgroundRepeat = `no-repeat`;
+                    el.style.width = `${width}px`;
+                    el.style.height = `${height}px`;
+                    el.style.backgroundSize = '100%';
+
+
+                    var lng = restaurants[i].hub_longitude;
+                    var lat = restaurants[i].hub_latitude;
+                    const marker = new mapboxgl.Marker(el)
+                        .setLngLat([lng, lat])
+                        .addTo(map);
+                }
+
+            };
+            xhr.send();
+        }
+        GetLocations();
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <script>
         // plot points for real dataset
 
@@ -122,12 +249,12 @@
             xhr.onload = function () {
                 var response = JSON.parse(xhr.response);
                 console.log(response);
-                initMap(response);
+                //initMap(response);
             };
             xhr.send();
         }
 
-        GetLocations();
+        // GetLocations();
 
     </script>
 }
