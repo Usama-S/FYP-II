@@ -71,13 +71,25 @@ namespace RouteOptimization.Controllers
         [HttpGet]
         public Locations GetLocations()
         {
-            using(var db = new Optimization_RWEntities())
+            using (var db = new Optimization_RWEntities())
             {
                 var customers = db.stores.ToList();
                 var restaurants = db.hubs.ToList();
                 var riders = db.drivers.Take(10).ToList();
 
-                return new Locations(){ customers=customers, restaurants=restaurants, riders=riders};
+                return new Locations() { restaurants = restaurants };
+            }
+        }
+
+        [Route("api/GetRestaurants")]
+        [HttpGet]
+        public List<hub> GetRestaurants()
+        {
+            using (var db = new Optimization_RWEntities())
+            {
+                var restaurants = db.hubs.ToList();
+
+                return restaurants;
             }
         }
     }

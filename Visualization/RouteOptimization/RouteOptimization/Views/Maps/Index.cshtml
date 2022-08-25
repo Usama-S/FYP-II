@@ -83,19 +83,19 @@
             zoom: 5 // starting zoom
         });
 
-        // method to call AJAX to get Locations data.
+        // method to call AJAX to get all restaurant Locations data.
         function GetLocations() {
-            var url = '/api/GetLocations';
+            var url = '/api/GetRestaurants';
 
             var xhr = new XMLHttpRequest();
             xhr.open("get", url);
             xhr.onload = function () {
                 var response = JSON.parse(xhr.response);
-                console.log(response);
+                //console.log(response);
                 // deal with the data here...
 
                 // set all restaurant points...
-                var restaurants = response.restaurants;
+                var restaurants = response;
                 for (let i = 0; i < restaurants.length; i++) {
 
                     // styling for restaurant point
@@ -109,11 +109,21 @@
                     el.style.height = `${height}px`;
                     el.style.backgroundSize = '100%';
 
+                    // create the popup
+                    //const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+                    //    restaurants[i].hub_name + "<a href='#'>show route</a>"
+                    //);
+
+                    // create a popup for resstaurant name.
+                    const popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                        restaurants[i].hub_name
+                    );
 
                     var lng = restaurants[i].hub_longitude;
                     var lat = restaurants[i].hub_latitude;
                     const marker = new mapboxgl.Marker(el)
                         .setLngLat([lng, lat])
+                        .setPopup(popup)
                         .addTo(map);
                 }
 
@@ -121,6 +131,8 @@
             xhr.send();
         }
         GetLocations();
+
+
     </script>
     
     
