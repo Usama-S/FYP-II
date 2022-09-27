@@ -84,7 +84,7 @@
         });
 
         // method to call AJAX to get all restaurant Locations data.
-        function GetLocations() {
+        function GetRestaurants() {
             var url = '/api/GetRestaurants';
 
             var xhr = new XMLHttpRequest();
@@ -107,7 +107,7 @@
                     el.style.backgroundRepeat = `no-repeat`;
                     el.style.width = `${width}px`;
                     el.style.height = `${height}px`;
-                    el.style.backgroundSize = '100%';
+                    el.style.backgroundSize = 'auto 100%';
 
                     // create the popup
                     //const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
@@ -130,8 +130,95 @@
             };
             xhr.send();
         }
-        GetLocations();
+        GetRestaurants();
 
+        // get all the active riders.
+        // get the order count of all the above riders.
+        // add link to open on new page.
+
+        // method to get all the active riders and all the active order locations
+        function GetRiders() {
+            var url = '/api/GetRiders';
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("get", url);
+            xhr.onload = function () {
+                var response = JSON.parse(xhr.response);
+
+                // set all rider points...
+                var riders = response.riders;
+                // console.log(response.orders);
+
+                // set riders on the map
+                for (let i = 0; i < riders.length; i++) {
+
+                    // styling for restaurant point
+                    const el = document.createElement('div');
+                    const width = 30;
+                    const height = 45;
+                    el.className = 'marker';
+                    el.style.backgroundImage = `url(/App_Images/rider.png)`;
+                    el.style.backgroundRepeat = `no-repeat`;
+                    el.style.width = `${width}px`;
+                    el.style.height = `${height}px`;
+                    el.style.backgroundSize = 'auto 100%';
+
+                    // create the popup
+                    //const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+                    //    restaurants[i].hub_name + "<a href='#'>show route</a>"
+                    //);
+
+                    // create a popup for resstaurant name.
+                    const popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                        riders[i].driver_id
+                    );
+
+                    var lng = riders[i].current_longitude;
+                    var lat = riders[i].current_latitude;
+                    const marker = new mapboxgl.Marker(el)
+                        .setLngLat([lng, lat])
+                        .setPopup(popup)
+                        .addTo(map);
+                }
+
+                // set order delivery locations on the map
+                var orders = response.orders;
+                for (let i = 0; i < orders.length; i++) {
+
+                    // styling for restaurant point
+                    const el = document.createElement('div');
+                    const width = 40;
+                    const height = 45;
+                    el.className = 'marker';
+                    el.style.backgroundImage = `url(/App_Images/order.png)`;
+                    el.style.backgroundRepeat = `no-repeat`;
+                    el.style.width = `${width}px`;
+                    el.style.height = `${height}px`;
+                    el.style.backgroundSize = 'auto 100%';
+
+                    // create a popup for resstaurant name.
+                    const popup = new mapboxgl.Popup({ offset: 25 }).setText(
+                        orders[i].store_name
+                    );
+
+                    var lng = orders[i].store_longitude;
+                    var lat = orders[i].store_latitude;
+                    const marker = new mapboxgl.Marker(el)
+                        .setLngLat([lng, lat])
+                        .setPopup(popup)
+                        .addTo(map);
+                }
+
+            };
+            xhr.send();
+        }
+        GetRiders();
+
+        setInterval(function () {
+            $(".marker").remove();
+            GetRestaurants();
+            GetRiders();
+        }, 15000);
 
     </script>
     

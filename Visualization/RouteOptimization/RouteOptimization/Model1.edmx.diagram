@@ -15,6 +15,7 @@
         <EntityTypeShape EntityType="Optimization_RWModel.sysdiagram" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Optimization_RWModel.QryOrder" Width="1.5" PointX="7.375" PointY="7.75" />
         <EntityTypeShape EntityType="Optimization_RWModel.orders_processed" Width="1.5" PointX="3.375" PointY="8.75" />
+        <EntityTypeShape EntityType="Optimization_RWModel.orders_processed2" Width="1.5" PointX="9.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

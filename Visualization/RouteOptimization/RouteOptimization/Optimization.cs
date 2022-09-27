@@ -18,11 +18,11 @@ namespace RouteOptimization
         // number of kms upto which the program should search for the riders.
         private const int SIGMA = 5;
 
-        // maximum number of orders a rider can have.
+        // maximum number of orders a rider can have.\
         private const int MAX_ORDERS = 5;
 
         // main optimization algorithm.
-        public static void Optimize(orders_processed order)
+        public static void Optimize(orders_processed2 order)
         {
             // get restaurant location from the order
             double[] pickup_location = new double[] { (double)order.hub_latitude, (double)order.hub_longitude };
@@ -112,7 +112,7 @@ namespace RouteOptimization
         }
 
         // get the shortest path/sequence of deliveries for a rider
-        public static List<Location> GetShortestRoute(driver rider, orders_processed new_order = null)
+        public static List<Location> GetShortestRoute(driver rider, orders_processed2 new_order = null)
         {
             // empty list for all the locations to be searched.
             List<Location> locations = new List<Location>();
@@ -128,7 +128,7 @@ namespace RouteOptimization
 
             // get all the current orders of this rider.
             // var current_orders = db.orders_processed.Where(w => !w.delivery_status.Equals("FINISHED")).ToList();
-            List<orders_processed> current_orders = UtilityClass.GetUnfinishedOrdersForRider(rider.driver_id);
+            List<orders_processed2> current_orders = UtilityClass.GetUnfinishedOrdersForRider(rider.driver_id);
 
             // if there is any new order, add it to the list of current orders
             if (new_order != null)

@@ -37,6 +37,7 @@ namespace RouteOptimization
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<QryOrder> QryOrders { get; set; }
         public virtual DbSet<orders_processed> orders_processed { get; set; }
+        public virtual DbSet<orders_processed2> orders_processed2 { get; set; }
     
         public virtual ObjectResult<GetRidersIn5KmRadius_Result> GetRidersIn5KmRadius(Nullable<double> lat, Nullable<double> @long)
         {

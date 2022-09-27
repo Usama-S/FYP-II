@@ -111,6 +111,7 @@
   <ItemGroup>
     <Content Include="App_Files\CustomCss.css" />
     <Content Include="App_Files\CustomJs.js" />
+    <Content Include="App_Images\order.png" />
     <Content Include="App_Images\restaurant.png" />
     <Content Include="App_Images\rider.png" />
     <Content Include="Content\css\bootstrap.min.css" />
@@ -1831,6 +1832,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="orders_processed.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="orders_processed2.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="payment.cs">

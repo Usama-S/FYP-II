@@ -131,6 +131,52 @@ warning 6002: The table/view 'Optimization_P2.dbo.orders_processed' does not hav
     <Property Name="order_metric_transit_time" Type="float" />
     <Property Name="order_metric_cycle_time" Type="float" />
   </EntityType>
+  <EntityType Name="orders_processed2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_id" Type="int" Nullable="false" />
+    <Property Name="store_id" Type="int" Nullable="false" />
+    <Property Name="store_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="store_latitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="store_longitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_id" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="hub_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_city" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_state" Type="nvarchar" MaxLength="50" />
+    <Property Name="hub_latitude" Type="float" />
+    <Property Name="hub_longitude" Type="float" />
+    <Property Name="delivery_id" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="delivery_distance_meters" Type="nvarchar" MaxLength="50" />
+    <Property Name="delivery_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="driver_id" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="current_latitude" Type="float" />
+    <Property Name="current_longitude" Type="float" />
+    <Property Name="driver_rating" Type="smallint" />
+    <Property Name="current_orders" Type="smallint" />
+    <Property Name="order_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="order_created_hour" Type="int" Nullable="false" />
+    <Property Name="order_created_minute" Type="int" Nullable="false" />
+    <Property Name="order_created_day" Type="int" Nullable="false" />
+    <Property Name="order_created_month" Type="int" Nullable="false" />
+    <Property Name="order_created_year" Type="int" Nullable="false" />
+    <Property Name="order_moment_created" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="order_moment_accepted" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_ready" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_in_expedition" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_collected" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_delivering" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_delivered" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_moment_finished" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_metric_collected_time" Type="float" />
+    <Property Name="order_metric_paused_time" Type="float" />
+    <Property Name="order_metric_production_time" Type="float" />
+    <Property Name="order_metric_walking_time" Type="float" />
+    <Property Name="order_metric_expediton_speed_time" Type="float" />
+    <Property Name="order_metric_transit_time" Type="float" />
+    <Property Name="order_metric_cycle_time" Type="float" />
+  </EntityType>
   <EntityType Name="payments">
     <Key>
       <PropertyRef Name="payment_id" />
@@ -264,6 +310,7 @@ warning 6002: The table/view 'Optimization_P2.dbo.QryOrders' does not have a pri
     <EntitySet Name="drivers" EntityType="Self.drivers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="hubs" EntityType="Self.hubs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders_processed2" EntityType="Self.orders_processed2" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="stores" EntityType="Self.stores" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />

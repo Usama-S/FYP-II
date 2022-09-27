@@ -163,6 +163,7 @@
     <FunctionImport Name="GetRidersCurrentOrderCount1">
       <Parameter Name="rider_id" Mode="In" Type="Decimal" />
     </FunctionImport>
+    <EntitySet Name="orders_processed2" EntityType="Optimization_RWModel.orders_processed2" />
   </EntityContainer>
   <EntityType Name="QryOrder">
     <Key>
@@ -251,6 +252,52 @@
       <PropertyRef Name="order_created_year" />
       <PropertyRef Name="order_moment_created" />
     </Key>
+    <Property Name="order_id" Type="Int32" Nullable="false" />
+    <Property Name="store_id" Type="Int32" Nullable="false" />
+    <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="store_longitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="hub_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_state" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hub_latitude" Type="Double" />
+    <Property Name="hub_longitude" Type="Double" />
+    <Property Name="delivery_id" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="delivery_distance_meters" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="delivery_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="driver_id" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="current_latitude" Type="Double" />
+    <Property Name="current_longitude" Type="Double" />
+    <Property Name="driver_rating" Type="Int16" />
+    <Property Name="current_orders" Type="Int16" />
+    <Property Name="order_status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_created_hour" Type="Int32" Nullable="false" />
+    <Property Name="order_created_minute" Type="Int32" Nullable="false" />
+    <Property Name="order_created_day" Type="Int32" Nullable="false" />
+    <Property Name="order_created_month" Type="Int32" Nullable="false" />
+    <Property Name="order_created_year" Type="Int32" Nullable="false" />
+    <Property Name="order_moment_created" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_accepted" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_ready" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_in_expedition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_collected" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_delivering" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_delivered" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_moment_finished" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_metric_collected_time" Type="Double" />
+    <Property Name="order_metric_paused_time" Type="Double" />
+    <Property Name="order_metric_production_time" Type="Double" />
+    <Property Name="order_metric_walking_time" Type="Double" />
+    <Property Name="order_metric_expediton_speed_time" Type="Double" />
+    <Property Name="order_metric_transit_time" Type="Double" />
+    <Property Name="order_metric_cycle_time" Type="Double" />
+  </EntityType>
+  <EntityType Name="orders_processed2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="order_id" Type="Int32" Nullable="false" />
     <Property Name="store_id" Type="Int32" Nullable="false" />
     <Property Name="store_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
