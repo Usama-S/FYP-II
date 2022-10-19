@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "472c6b88-b05d-4ae3-92a4-e3bc86625adf": {
+      "ProjectGuid": "472c6b88-b05d-4ae3-92a4-e3bc86625adf",
+      "DisplayName": "RouteOptimization",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}

@@ -1,0 +1,121 @@
+﻿@{
+    // check controller name to set active class in navbar
+    string homeClass = "";
+    string ordersClass = "";
+    string mapsClass = "";
+    string routesClass = "";
+    string programsClass = "";
+
+    var controllerName = string.Empty;
+    Object controllerObj = "";
+
+    if (ViewContext.RouteData.Values.TryGetValue("controller", out controllerObj))
+    {
+        controllerName = controllerObj.ToString();
+
+        switch (controllerName)
+        {
+            case "Home":
+                homeClass = "active";
+                break;
+            case "Orders":
+                ordersClass = "active";
+                break;
+            case "Maps":
+                mapsClass = "active";
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- bootstrap -->
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- datatable css -->
+    <link href="~/Content/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/Content/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/App_Files/CustomCss.css" rel="stylesheet" />
+
+    <!-- JS files -->
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/js/jquery-3.6.0.min.js"></script>
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+
+    @RenderSection("HeadCSS", required: false)
+    @RenderSection("HeadScripts", required: false)
+
+    <title>@ViewBag.Title - RTOptimization</title>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/Orders/Index" style="color: black; filter: invert(1)"><b><span style="color: #3e74b1">RT</span>Optimization</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    @*<a class="nav-link @homeClass" href="/"><i class="fas fa-home"></i> Home</a>*@
+                    <a class="nav-link @ordersClass" href="/Orders/Index"><i class="fas fa-file-alt"></i> Orders</a>
+                    <a class="nav-link @mapsClass" href="/Maps/Index"><i class="fas fa-map-marked-alt"></i> Map</a>
+                    @*<a class="nav-link @routesClass" href="/Routes/Index"><i class="fas fa-route"></i> Routes</a>*@
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div class="container body-content" id="container">
+        @RenderBody()
+    </div>
+
+    <div id="footer" class="container">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - RTOptimization</p>
+        </footer>
+    </div>
+
+    <!-- jquery link -->
+    <script src="~/Content/js/jquery-3.6.0.min.js"></script>
+
+    <!-- datatable library -->
+    <script src="~/Content/js/jquery.dataTables.min.js"></script>
+
+    <!-- bootstrap js bundle -->
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+
+    <!-- fontawesome icons js -->
+    <script src="~/Content/fontawesome/js/all.js"></script>
+
+    <!-- custom js -->
+    <script src="~/App_Files/CustomJs.js"></script>
+
+    <!-- page level scripts -->
+    @RenderSection("FootScripts", required: false)
+</body>
+</html>
+
+<script>
+    //$(document).ready(function () {
+    //    $('#datatable1').DataTable({
+    //        scrollX: 100
+    //    });
+    //    $('#datatable2').DataTable({
+    //        scrollX
+    //    });
+    //});
+</script>

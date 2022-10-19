@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Orders";
+}
+
+@section HeadCSS{
+    <style>
+        .t-bold {
+            font-weight: bold;
+        }
+    </style>
+}
+
+@section HeadScripts{
+    <!-- add script files here... -->
+}
+
+<!-- red = new, blue = planned/assigned, green = picked up and dispatched/delivering -->
+
+<h2 style="margin-top: 30px;">Orders</h2>
+
+<table id="table" class="display table table-sm" cellspacing="0" width="100%">
+    <thead class="bg-dark text-white no-bold"></thead>
+    <tbody></tbody>
+</table>
+
+<!--
+
+Columns to view
+    * order id
+    * order date
+    * order time
+    * restaurant name
+    * delivery location
+    * rider id
+    * order status
+-->
+
+<script>
+
+    var table;
+
+    table = $('#table').DataTable({
+        "pagingType": 'full_numbers',
+        "pageLength": 100,
+        "scrollY": "300px",
+        "createdRow": function (row, data, dataIndex) {
+            if (data.order_status == 'NEW') {
+                $(row).addClass('text-danger t-bold');
+            }
+            else if (data.order_status == 'ASSIGNED') {
+                $(row).addClass('text-primary t-bold');
+            }
+            else if (data.order_status == 'DELIVERING') {
+                $(row).addClass('text-success t-bold');
+            }
+        },
+        "order": [[1, 'desc']],
+        "dom": 'TRlfrCtip',
+        "colVis": {
+            "activate": "mouseover",
+            "restore": "Restore"
+        },
+        "tableTools": {
+            "aButtons": ["copy", "csv", "xls", "pdf", "print"],
+            "sSwfPath": "http://cdn.datatables.net/tabletools/2.2.2/swf/copy_csv_xls_pdf.swf"
+        },
+        "ajax": {
+            "url": '/api/GetOrders',
+            "timeout": 600000,
+            "dataType": "json",
+            "type": "GET",
+            "dataSrc": ""
+        },
+        "aoColumns": [{
+            "mData": "order_id",
+            "sTitle": "Order Id"
+        }, {
+            "mData": "order_moment_created",
+            "sTitle": "Order Date & Time"
+        }, {
+            "mData": "order_moment_finished",
+            "sTitle": "Finished Time"
+        }, {
+            "mData": "hub_name",
+            "sTitle": "Restaurant"
+        }, {
+            "mData": "store_name",
+            "sTitle": "Delivery"
+        }, {
+            "mData": "driver_id",
+            "sTitle": "Rider"
+        }, {
+            "mData": "order_status",
+            "sTitle": "Order Status"
+        },],
+        "deferRender": true,
+        "columnDefs": [
+            {
+                "targets": [0],
+                "visible": true,
+                "searchable": true
+            }
+        ]
+    });
+
+    setInterval(function () { table.ajax.reload(); }, 30000);
+
+</script>
